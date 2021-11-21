@@ -8,11 +8,12 @@ const ProductScreen = ({ match }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${match.params.id}`);
-      setProduct(data);
+      const res = await axios.get(`/api/products/${match.params.id}`);
+      // console.log(res);
+      setProduct(res.data);
     };
     fetchProduct();
-  }, []);
+  }, [match]);
   return (
     <>
       <Link className='btn btn-lisgt my-3' to='/'>
@@ -28,10 +29,7 @@ const ProductScreen = ({ match }) => {
               <h3>{product.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Rating
-                value={product.rating}
-                text={`${product.numReviews} reviews`}
-              />
+              <Rating value={product.rating} text={`${product.numReviews}`} />
             </ListGroup.Item>
             <ListGroup.Item>
               price : ₹ {Math.round(72 * product.price)}
