@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Airpods Wireless Bluetooth Headphones",
     image:
       "https://github.com/bradtraversy/proshop_mern/blob/master/frontend/public/images/airpods.jpg?raw=true",
@@ -14,7 +13,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: "2",
     name: "iPhone 11 Pro 256GB Memory",
     image:
       "https://github.com/bradtraversy/proshop_mern/blob/master/frontend/public/images/phone.jpg?raw=true",
@@ -28,7 +26,6 @@ const products = [
     numReviews: 90,
   },
   {
-    _id: "3",
     name: "Cannon EOS 80D DSLR Camera",
     image:
       "https://github.com/bradtraversy/proshop_mern/blob/master/frontend/public/images/camera.jpg?raw=true",
@@ -42,7 +39,6 @@ const products = [
     numReviews: 76,
   },
   {
-    _id: "4",
     name: "Sony Playstation 4 Pro White Version",
     image:
       "https://github.com/bradtraversy/proshop_mern/blob/master/frontend/public/images/playstation.jpg?raw=true",
@@ -56,7 +52,6 @@ const products = [
     numReviews: 90,
   },
   {
-    _id: "5",
     name: "Logitech G-Series Gaming Mouse",
     image:
       "https://github.com/bradtraversy/proshop_mern/blob/master/frontend/public/images/mouse.jpg?raw=true",
@@ -70,7 +65,6 @@ const products = [
     numReviews: 5,
   },
   {
-    _id: "6",
     name: "Amazon Echo Dot 3rd Generation",
     image:
       "https://github.com/bradtraversy/proshop_mern/blob/master/frontend/public/images/alexa.jpg?raw=true",
