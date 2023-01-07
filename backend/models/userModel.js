@@ -1,28 +1,34 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
+import bcrypt from 'bcryptjs'
 const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: true
     },
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     isAdmin: {
       type: Boolean,
       required: true,
-      default: false,
-    },
+      default: false
+    }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
-);
-const User = mongoose.model("User", userSchema);
-export default User;
+)
+
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password)
+}
+
+const User = mongoose.model('User', userSchema)
+export default User
