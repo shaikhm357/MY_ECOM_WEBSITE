@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
 import { Form, Button, Col, FormLabel, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Msg from '../components/Msg.js'
 import Loader from '../components/Loader.js'
-import { getUserDetails } from '../actions/userActions.js'
+import { getUserDetails, updateUserProfile } from '../actions/userActions.js'
 
 function ProfileScreen({ location, history }) {
   const [name, setName] = useState('')
@@ -21,6 +20,9 @@ function ProfileScreen({ location, history }) {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const { success } = userUpdateProfile
 
   useEffect(() => {
     if (!userInfo) {
@@ -40,7 +42,7 @@ function ProfileScreen({ location, history }) {
     if (password !== confirmPassword) {
       setMessage('passwords do not match')
     } else {
-      //dispatch updare profile
+      dispatch(updateUserProfile({ id: user._id, name, email, password }))
     }
   }
   return (
@@ -50,6 +52,7 @@ function ProfileScreen({ location, history }) {
 
         {message && <Msg variant="danger">{message}</Msg>}
         {error && <Msg variant="danger">{error}</Msg>}
+        {success && <Msg variant="success">Profile Updated</Msg>}
         {loading && <Loader />}
 
         <Form onSubmit={submitHandler}>
