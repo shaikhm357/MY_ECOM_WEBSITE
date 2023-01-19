@@ -55,7 +55,7 @@ function OrderScreen({ match }) {
                 <strong>Method: </strong>
                 {order.paymentMethod}
               </p>
-              <p>{order.isPaid ? <Msg variant="success">Paid on {order.paymentMethod}</Msg> : <Msg variant="danger">Not Paid</Msg>}</p>
+              <p>{order.isPaid ? <Msg variant="success">Paid on {order.paidAt}</Msg> : <Msg variant="danger">Not Paid</Msg>}</p>
             </ListGroup.Item>
           </ListGroup>
 
