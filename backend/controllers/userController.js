@@ -3,7 +3,7 @@ import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
 
 // @desc Auth the user and get token
-// @route POSY /api/users/login
+// @route POST /api/users/login
 // @acess public
 
 const authUser = asyncHandler(async (req, res) => {
@@ -94,4 +94,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
-export { authUser, registerUser, getUserProfile, updateUserProfile }
+// @desc Get all user
+// @route GEt api/users
+// @acess protected/admin
+
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({})
+  res.json({ users })
+})
+
+export { authUser, registerUser, getUserProfile, updateUserProfile, getUsers }
