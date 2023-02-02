@@ -30,7 +30,6 @@ const UserListScreen = ({ history }) => {
     if (window.confirm('Are you sure')) {
       dispatch(deleteUser(id))
     }
-    console.log('deleted')
   }
 
   return (
