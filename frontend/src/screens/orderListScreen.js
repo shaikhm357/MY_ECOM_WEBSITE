@@ -56,14 +56,13 @@ const OrderListScreen = ({ history, match }) => {
                 <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }}></i>}</td>
                 <td>{order.isDelivered}</td>
                 <td>
+                <td>
                   <LinkContainer to={`/admin/order/${order._id}`}>
-                    <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit"></i>
+                    <Button variant='light' className='btn-sm'>
+                      Details
                     </Button>
                   </LinkContainer>
-                  <Button variant="danger" className="btn-sm" onClick={() => deleteHandler(order._id)}>
-                    <i className="fas fa-trash"></i>
-                  </Button>
+                </td>
                 </td>
               </tr>
             ))}
