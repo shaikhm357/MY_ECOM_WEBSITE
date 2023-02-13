@@ -10,19 +10,21 @@ import { listProducts } from '../actions/productActions'
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword
 
+  const pageNumber = match.params.pageNumber || 1
+
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const { loading, error, products } = productList
   // const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    dispatch(listProducts(keyword))
+    dispatch(listProducts(keyword, pageNumber))
     // const fetchProduct = async () => {
     //   const { data } = await axios.get("/api/products");
     //   setProducts(data);
     // };
     // fetchProduct();
-  }, [dispatch, keyword])
+  }, [dispatch, keyword, pageNumber])
   //const products = [];
   return (
     <>
