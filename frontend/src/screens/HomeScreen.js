@@ -5,6 +5,7 @@ import Product from '../components/Product'
 import Msg from '../components/Msg'
 import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
+import Paginate from '../components/Paginate'
 
 //import axios from "axios";
 const HomeScreen = ({ match }) => {
@@ -14,7 +15,7 @@ const HomeScreen = ({ match }) => {
 
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
-  const { loading, error, products } = productList
+  const { loading, error, products, page, pages } = productList
   // const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -34,11 +35,14 @@ const HomeScreen = ({ match }) => {
       ) : error ? (
         <Msg variant="danger">{error}</Msg>
       ) : (
-        <Row sm={12} md={6} lg={4} xl={3}>
-          {products.map((product) => (
-            <Product key={product._id} product={product} />
-          ))}
-        </Row>
+        <>
+          <Row sm={12} md={6} lg={4} xl={3}>
+            {products.map((product) => (
+              <Product key={product._id} product={product} />
+            ))}
+          </Row>
+          <Paginate pages={pages} page={page} key={keyword ? keyword : ''} />
+        </>
       )}
     </>
   )
