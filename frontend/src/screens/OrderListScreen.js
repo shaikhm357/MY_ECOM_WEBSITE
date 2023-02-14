@@ -53,13 +53,11 @@ const OrderListScreen = ({ history, match }) => {
                 <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }}></i>}</td>
                 <td>{order.isDelivered}</td>
                 <td>
-                  <td>
-                    <LinkContainer to={`/orders/${order._id}`}>
-                      <Button variant="light" className="btn-sm">
-                        Details
-                      </Button>
-                    </LinkContainer>
-                  </td>
+                  <LinkContainer to={`/orders/${order._id}`}>
+                    <Button variant="light" className="btn-sm">
+                      Details
+                    </Button>
+                  </LinkContainer>
                 </td>
               </tr>
             ))}

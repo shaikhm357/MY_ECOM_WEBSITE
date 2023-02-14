@@ -7,6 +7,8 @@ import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
+import Meta from '../components/Meta'
+import { Link } from 'react-router-dom'
 
 //import axios from "axios";
 const HomeScreen = ({ match }) => {
@@ -30,7 +32,14 @@ const HomeScreen = ({ match }) => {
   //const products = [];
   return (
     <>
-      {!keyword && <ProductCarousel />}
+      <Meta />
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to="/" className="btn btn-light">
+          GO Back
+        </Link>
+      )}
       <h1>latest producs</h1>
       {loading ? (
         <Loader />
