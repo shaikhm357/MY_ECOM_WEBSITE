@@ -117,7 +117,7 @@ function ProfileScreen({ location, history }) {
                   <td>{order.isPaid ? order.paidAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }}></i>}</td>
                   <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : <i className="fas fa-times" style={{ color: 'red' }}></i>}</td>
                   <td>
-                    <LinkContainer to={`/order/${order._id}`}>
+                    <LinkContainer to={`/orders/${order._id}`}>
                       <Button className="btn-sm" variant="light">
                         Details
                       </Button>
