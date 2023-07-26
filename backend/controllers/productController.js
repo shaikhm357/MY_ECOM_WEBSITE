@@ -6,7 +6,8 @@ import asyncHandler from 'express-async-handler'
 // @acess public
 
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 10
+  // const pageSize = 10
+  const pageSize = process.env.PAGINATION_LIMIT
   const page = Number(req.query.pageNumber) || 1
 
   const keyword = req.query.keyword
