@@ -13,7 +13,7 @@ function PaymentScreen({ history }) {
     history.push('/shipping')
   }
 
-  const [paymentMethod, setPaymentMethod] = useState('PayPal')
+  const [paymentMethod, setPaymentMethod] = useState('RazorPay')
 
   const dispatch = useDispatch()
 
@@ -34,22 +34,22 @@ function PaymentScreen({ history }) {
           <Col>
             <Form.Check
               type="radio"
-              label="PayPal or Credit Card"
-              id="PayPal"
+              label="RazorPay or Credit Card"
+              id="RazorPay"
               name="paymentMethod"
-              value="PayPal"
+              value="RazorPay"
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
 
-            {/* <Form.Check
+            <Form.Check
               type="radio"
               label="Stripe"
               id="Stripe"
               name="paymentMethod"
               value="Stripe"
               onChange={(e) => setPaymentMethod(e.target.value)}
-            ></Form.Check> */}
+            ></Form.Check>
           </Col>
         </Form.Group>
         <br />

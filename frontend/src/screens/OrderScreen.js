@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { deliverOrder, getOrderDetails, payOrder } from '../actions/orderActions'
 import axios from 'axios'
 import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants'
+import RazorpayCheckout from '../components/RazorPay.js'
 
 function OrderScreen({ history, match }) {
   const orderId = match.params.id
@@ -124,7 +125,7 @@ function OrderScreen({ history, match }) {
                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                       </Col>
                       <Col md={4}>
-                        {item.qty} * ${item.price} = ${item.qty * item.price}
+                        {item.qty} * ₹{item.price} = ₹{item.qty * item.price}
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -137,36 +138,38 @@ function OrderScreen({ history, match }) {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>Order Summaryllllllllllllllllllllllll</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${order.itemsPrice}</Col>
+                  <Col>₹{order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${order.shippingPrice}</Col>
+                  <Col>₹{order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${order.taxPrice}</Col>
+                  <Col>₹{order.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${order.totalPrice}</Col>
+                  <Col>₹{order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? <Loader /> : <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />}
+                  <RazorpayCheckout/>
+
                 </ListGroup.Item>
               )}
               {loadingDeliver && <Loader />}
