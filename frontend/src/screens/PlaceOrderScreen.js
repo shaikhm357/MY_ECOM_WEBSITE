@@ -16,7 +16,7 @@ function PlaceOrderScreen({ history }) {
   }
 
   cart.itemsPrice = addDecimal(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0))
-  cart.shippingPrice = addDecimal(cart.itemsPrice > 100 ? 0 : 100)
+  cart.shippingPrice = addDecimal(cart.itemsPrice > 500 ? 0 : 40)
   cart.taxPrice = addDecimal(Number((0.18 * cart.itemsPrice).toFixed(2)))
   cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
@@ -94,7 +94,7 @@ function PlaceOrderScreen({ history }) {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summary===============</h2>
+                <h2>Order Summary</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>

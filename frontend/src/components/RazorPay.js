@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
+import { useParams } from 'react-router-dom';
+
 import { useSelector } from "react-redux";
 
 const RazorpayCheckout = () => {
+  const { id } = useParams();
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+  // console.log('orderId=======>',id);
 
   useEffect(() => {
     // Load Razorpay script
@@ -49,9 +53,9 @@ const RazorpayCheckout = () => {
         name: "My Ecom",
         description: "Test Transaction",
         order_id: orderData.id, // Order ID created in the backend
-        callback_url: "http://localhost:3000/payment-success", // Your success URL
+        // callback_url: "http://localhost:3000/profile", // Your success URL
         prefill: {
-          name: "mahboob shaikh",
+          name: "Mahboob Shaikh",
           email: "mahboob.shaikh@gmail.com",
           contact: "9999999999",
         },
@@ -65,6 +69,7 @@ const RazorpayCheckout = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
+              produtOrderId : id,
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
@@ -74,7 +79,8 @@ const RazorpayCheckout = () => {
             .then((data) => {
               console.log(data,"dtaaaaaaaaaaaaaaaaaaaa")
               if (data.status === "ok") {
-                window.location.href = "/payment-success";
+                // window.location.href = "/profile";
+                window.location.reload();
               } else {
                 alert("Payment verification failed");
               }

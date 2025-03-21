@@ -21,7 +21,7 @@ const Product = ({ product }) => {
             <Rating value={product.rating} text={product.numReviews} />
           </div>
         </Card.Text>
-        <Card.Text as='h3'>₹{Math.round(product.price * 72)}</Card.Text>
+        <Card.Text as='h3'>₹{product.price}</Card.Text>
       </Card.Body>
     </Card>
   );

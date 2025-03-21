@@ -51,7 +51,7 @@ function OrderScreen({ history, match }) {
       }
       document.body.appendChild(script)
     }
-    if (!order || successPay || successDeliver) {
+    if (!order || order._id !== orderId || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
@@ -138,7 +138,7 @@ function OrderScreen({ history, match }) {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summaryllllllllllllllllllllllll</h2>
+                <h2>Order Summary</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>

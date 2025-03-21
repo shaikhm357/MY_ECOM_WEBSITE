@@ -14,6 +14,7 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadroutes from './routes/uploadRoutes.js'
+import Order from './models/orderModel.js'
 
 dotenv.config()
 
@@ -40,8 +41,8 @@ const razorpay = new Razorpay({
 });
 
 const readData = () => {
-  if (fs.existsSync("orders.json")) {
-    const data = fs.readFileSync("orders.json");
+  if (fs.existsSync("order.json")) {
+    const data = fs.readFileSync("order.json");
     return JSON.parse(data);
   }
   return [];
@@ -86,8 +87,8 @@ app.get("/payment-success", (req, res) => {
   res.sendFile(path.join(__dirname, "success.html"));
 });
 
-app.post("/verify-payment", (req, res) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+app.post("/verify-payment", async (req, res) => {
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature, produtOrderId } =
     req.body;
 
   const secret = razorpay.key_secret;
@@ -102,16 +103,22 @@ app.post("/verify-payment", (req, res) => {
     if (isValidSignature) {
       const orders = readData();
       const order = orders.find((o) => o.order_id === razorpay_order_id);
-      if (order) {
-        order.status = "paid";
-        order.payment_id = razorpay_payment_id;
-        writeData(orders);
+      // if (order) {
+      //   order.status = "paid";
+      //   order.payment_id = razorpay_payment_id;
+      //   writeData(orders);
+      // }
+      const order1 = await Order.findById(produtOrderId);
+      if (order1) {
+        (order1.isPaid = true),
+          (order1.paidAt = Date.now())
+        const updatedorder1 = await order1.save();
+        res.status(200).json({ status: "ok" });
+        console.log("Payment verification successful!");
+      } else {
+        res.status(400).json({ status: "verification_failed" });
+        console.log("payment verification failed");
       }
-      res.status(200).json({ status: "ok" });
-      console.log("Payment verification successful!");
-    } else {
-      res.status(400).json({ status: "verification_failed" });
-      console.log("payment verification failed");
     }
   } catch (err) {
     console.log(err);
