@@ -47,7 +47,7 @@ const RazorpayCheckout = () => {
 
       // Open Razorpay Checkout
       const options = {
-        key: process.env.KEY_ID, // Replace with your Razorpay key_id
+        key: 'rzp_test_u5ymIfaKlEtUF1', // Replace with your Razorpay key_id
         amount: orderData.amount, // Amount is in currency subunits (paise)
         currency: orderData.currency,
         name: "My Ecom",
